@@ -26,6 +26,49 @@ function clock(params) {
     ctx.fill()
     ctx.restore();
 
+    //Draw hour marks
+    ctx.save();
+    for (let i = 0; i < 12; i++) {      
+        ctx.beginPath();
+        ctx.rotate(Math.PI/6);
+        ctx.moveTo(100, 0)
+        ctx.lineTo(120,0);
+        ctx.stroke();
+    }    
+    ctx.restore();
+
+    //Draw minute lines
+
+    ctx.save();
+    ctx.lineWidth = 3;
+    for (let i = 0; i < 60; i++) {     
+        if (i % 5 !== 0) {
+            ctx.beginPath();
+            ctx.moveTo(120, 0)
+            ctx.lineTo(120,0);
+            ctx.stroke();            
+        } 
+        ctx.rotate(Math.PI/30);       
+    }    
+    ctx.restore();
+
+    //Get current time;
+
+    const hr = now.getHours() % 12;
+    const min = now.getMinutes();
+    const sec = now.getSeconds();
+
+    console.log((`${hr}:${min}:${sec}`));
+
+
+    //Draw hour hand
+
+    ctx.save()
+
+
+
+
+
     ctx.restore(); // restore default state           
 }
 
