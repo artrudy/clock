@@ -62,14 +62,48 @@ function clock(params) {
 
 
     //Draw hour hand
+    ctx.save();
+    ctx.rotate((Math.PI/6) * hr + (Math.PI / 360) * min + (Math.PI / 21600) * sec );
+    ctx.strokeStyle = '#8000000';
+    ctx.lineWidth = 10;
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.lineTo(70, 0);
+    ctx.stroke();
+    ctx.restore();
 
-    ctx.save()
+
+     //Draw minute hand
+     ctx.save();
+     ctx.rotate((Math.PI/30) * min + (Math.PI / 1800) * sec );
+     ctx.strokeStyle = '#8000000';
+     ctx.lineWidth = 8;
+     ctx.beginPath();
+     ctx.moveTo(0, 0);
+     ctx.lineTo(85, 0);
+     ctx.stroke();
+     ctx.restore();
 
 
+     //Draw second hand
+     ctx.save();
+     ctx.rotate((sec* Math.PI)/30);
+     ctx.strokeStyle = '#8000000';
+     ctx.lineWidth = 4;
+     ctx.beginPath();
+     ctx.moveTo(0, 0);
+     ctx.lineTo(95, 0);
+     ctx.stroke();
+     ctx.beginPath();
+     ctx.arc(0, 0, 7, 0, Math.PI* 2, true);
+     ctx.fill();
+     ctx.restore();
 
 
-
-    ctx.restore(); // restore default state           
+    ctx.restore(); // restore default state       
+    requestAnimationFrame(clock)    
 }
+
+requestAnimationFrame(clock)
 
 clock();
